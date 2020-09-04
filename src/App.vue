@@ -1,14 +1,33 @@
 <template>
-  <div id="app">
-    <h1> Hello World! </h1>
+  <div class="container">
+       <communityQuestionsadder :qlist="queslist"  @quesAdded="newQues"> </communityQuestionsadder> 
   </div>
 </template>
 
 <script>
-import questionsAdder from "./components/Questions";
+import QuestionsAdder from "./components/Questions";
 export default {
+  data: function() {
+    return {
+      queslist: []
+    }
+  },
+  methods: {
+    newQues(quesData) {
+
+       if (quesData.qid == '') {
+          this.queslist.push ({
+          qid: '',
+          qdesc: quesData.qdesc,
+          qtype: quesData.qtype,
+          qcategory: quesData.qcategory
+          });
+        }  
+             
+    }
+  },
   components: {
-    communityQuestionsadder: questionsAdder
+    communityQuestionsadder: QuestionsAdder
   }
 }
 </script>
