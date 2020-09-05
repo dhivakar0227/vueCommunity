@@ -11,17 +11,22 @@
                 <div>
                     <table border="1px" width="100%" text-align="center" >
                         <tr>
-                            <td width="20%" text-align="center" >
+                            <td width="15%" text-align="center" >
                                 Category
                             </td>    
                             
-                            <td width="50%" text-align="center">
+                            <td width="40%" text-align="center">
                                 Question
                             </td>    
                             
-                            <td width="20%" text-align="center">
+                            <td width="15%" text-align="center">
                                 Type
                             </td>
+
+                            <td width="20%" text-align="center">
+                                Options
+                            </td>
+
                             <td width="10%" text-align="center">  
                                 Action
                             </td> 
@@ -31,16 +36,19 @@
                 <div v-for="(ques, index) in qlist"> 
                     <table border="1px" width="100%">
                         <tr>
-                            <td width="20%">
+                            <td width="15%">
                                 {{ques.qcategory}}
                             </td>    
                             
-                            <td width="50%">
+                            <td width="40%">
                                 {{ques.qdesc}}
                             </td>    
                             
-                            <td width="20%">
+                            <td width="15%">
                                 {{ques.qtype}}
+                            </td>
+                             <td width="20%">
+                                {{ques.qoptions}}
                             </td>
                             <td width="10%">
                                 <div>
@@ -74,6 +82,7 @@ export default {
         },
         deleteQuestion(index){
             this.$emit('delques', index);
+            
         } 
     }
 }
