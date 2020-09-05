@@ -3,7 +3,7 @@
         <form>
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                    <h1>Add a Question...</h1>
+                    <h1>Add a Question</h1>
                     <hr>
                 </div>
             </div>
@@ -65,30 +65,31 @@
                     </button>
                 </div>
             </div>
-            <hr>
+            <!--<hr>
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                     <label >List of all questions</label>
                     <p v-for="ques in qlist"> {{ ques.qdesc }} </p>
                 </div>
-            </div>
+            </div>-->
         </form>
     </div>    
 </template>
 
 <script>
+import { eventBus } from  '../main.js'
 export default {
     data () {
             return {
                 quesData: {
-                    qdesc: 'Add a question',
+                    qdesc: 'Add a question...',
                     qtype: 'Freeform',
                     qcategory: 'Personal Information',
                     qid: ''
                 },
                 selectedPriority: 'High',
-                categories: ['Personal Information', 'Program Management Experience', 'Technical Experience'],
-                queslist: []
+                categories: ['Personal Information', 'Program Management Experience', 'Technical Experience']
+                
             }
             
         },
@@ -98,6 +99,14 @@ export default {
             this.$emit("quesAdded", this.quesData)
             
         }
+    },
+    created() {
+        eventBus.$on('editques', (index) => {
+           this.quesData.qid = index;
+           this.quesData.qdesc = this.qlist[index].qdesc;
+           this.quesData.qtype = this.qlist[index].qtype;
+           this.quesData.qcategory = this.qlist[index].qcategory;
+        });
     }
 }
 </script>
