@@ -11,6 +11,9 @@
 import QuestionsAdder from "./components/Questions";
 import QuestionsLister from "./components/QuestionsList";
 import QuestionsSurvey from "./components/Survey"
+import { returnSameStringRequest } from "../questions_pb"
+import { QuestionServiceClient } from "../questions_grpc_web_pb"
+
 export default {
   data: function() {
     return {
@@ -82,7 +85,13 @@ export default {
     communityQuestionsadder: QuestionsAdder,
     communityQuestionslister: QuestionsLister,
     communityQuestionsSurvey: QuestionsSurvey
-  }
+  },
+
+  created: function() {
+    //this.client = new QuestionServiceClient("http://localhost:8080", null, null);
+    //this.returnSameString();
+    console.log("Successfully created grpc Service")
+  },
 }
 </script>
 
