@@ -11,8 +11,8 @@
 import QuestionsAdder from "./components/Questions";
 import QuestionsLister from "./components/QuestionsList";
 import QuestionsSurvey from "./components/Survey"
-import { returnSameStringRequest } from "../questions_pb"
-import { QuestionServiceClient } from "../questions_grpc_web_pb"
+import { returnSameStringRequest } from "./questions_pb"
+import { QuestionServiceClient } from "./questions_grpc_web_pb"
 
 export default {
   data: function() {
