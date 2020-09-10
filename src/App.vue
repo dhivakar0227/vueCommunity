@@ -11,8 +11,11 @@
 import QuestionsAdder from "./components/Questions";
 import QuestionsLister from "./components/QuestionsList";
 import QuestionsSurvey from "./components/Survey"
-import { returnSameStringRequest } from "./Questions_pb"
-import { QuestionServiceClient } from "./Questions_grpc_web_pb"
+//import { returnSameStringRequest } from "./Questions_pb"
+//import { QuestionServiceClient } from "./Questions_grpc_web_pb"
+
+const {returnSameStringRequest} = require('./Questions_pb.js');
+const {QuestionServiceClient} = require('./Questions_grpc_web_pb.js');
 
 export default {
   data: function() {
@@ -89,6 +92,20 @@ export default {
 
   created: function() {
     //this.client = new QuestionServiceClient("http://localhost:8080", null, null);
+    var client = new QuestionServiceClient('http://localhost:50053', null, null);
+    
+    var request = new returnSameStringRequest() 
+  
+
+    client.returnSameString(request, {}, (err, response) => {
+      if (err) {
+        console.log(`Unexpected error for returnSameString: code = ${err.code}` +
+                    `, message = "${err.message}"`);
+      } else {
+        console.log(response.getResult());
+      }
+    });
+    //this.client.returnSameString()
     //this.returnSameString();
     console.log("Successfully created grpc Service")
   },
